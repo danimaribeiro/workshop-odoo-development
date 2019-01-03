@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="action_envio_sms" model="ir.actions.act_window">
+        <field name="name">Envio de SMS</field>
+        <field name="res_model">total.voice.sms</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_sms"
+        name="Envio de SMS"
+        sequence="10"/>
+
+    <menuitem id="menu_sms_envio"
+        name="Envio de SMS"
+        action="action_envio_sms"
+        parent="menu_sms"
+        sequence="10"/>
+
+</odoo>

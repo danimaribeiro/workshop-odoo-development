@@ -15,5 +15,6 @@
     'depends': [
     ],
     'data': [
+        'views/sms.xml',
     ],
 }

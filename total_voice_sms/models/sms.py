@@ -9,3 +9,4 @@ class TotalVoiceSMS(models.Model):
     name = fields.Char()
     number_to = fields.Char()
     message = fields.Char()
+    send_date = fields.Datettime()
