@@ -1,7 +1,8 @@
 
 import json
+import re
 from datetime import datetime
-from odoo import fields, models
+from odoo import api, fields, models
 from odoo.exceptions import UserError
 
 from totalvoice.cliente import Cliente
@@ -18,11 +19,18 @@ class TotalVoiceSMS(models.Model):
         [('draft', 'Provisório'),
          ('sent', 'Enviado')], default="draft", string="Situação")
 
+    @api.onchange('number_to')
+    def _onchange_number_to(self):
+        numero = re.sub('[^0-9]', '', self.number_to or '')
+        if len(numero) == 11:
+            self.number_to = '(%s) %s-%s' % (numero[0:2], numero[2:7], numero[7:11])
+
     def action_enviar_sms(self):
-        cliente = Cliente("571058a184ef75e9b249216e56421c7c",
+        cliente = Cliente("seu token",
                           'api.totalvoice.com.br')
 
-        numero_destino = self.number_to
+        numero_destino = re.sub('[^0-9]', '', self.number_to or '')
+
         mensagem = self.message
         response = cliente.sms.enviar(numero_destino, mensagem)
 
