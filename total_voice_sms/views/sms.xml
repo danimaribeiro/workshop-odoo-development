@@ -6,13 +6,18 @@
         <field name="model">total.voice.sms</field>
         <field name="arch" type="xml">
             <form>
-                <button class="oe_highlight" name="action_enviar_sms" type="object" string="Enviar SMS"/>
-                <group>
-                    <field name="name"/>
-                    <field name="number_to" />
-                    <field name="message"/>
-                    <field name="send_date" readonly="1"/>
-                </group>
+                <header>
+                    <button class="oe_highlight" name="action_enviar_sms" type="object" string="Enviar SMS"/>
+                    <field name="state" widget="statusbar" />
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="number_to" />
+                        <field name="message"/>
+                        <field name="send_date" readonly="1"/>
+                    </group>
+                </sheet>
             </form>
         </field>
     </record>
