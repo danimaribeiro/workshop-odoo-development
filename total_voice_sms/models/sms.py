@@ -10,13 +10,13 @@ from totalvoice.cliente import Cliente
 class TotalVoiceSMS(models.Model):
     _name = 'total.voice.sms'
 
-    name = fields.Char()
-    number_to = fields.Char()
-    message = fields.Char()
-    send_date = fields.Datetime()
+    name = fields.Char(string="Descrição")
+    number_to = fields.Char(string="Enviar para", required=True)
+    message = fields.Char(string="Mensagem", required=True)
+    send_date = fields.Datetime(string="Data de Envio")
     state = fields.Selection(
         [('draft', 'Provisório'),
-         ('sent', 'Enviado')], default="draft")
+         ('sent', 'Enviado')], default="draft", string="Situação")
 
     def action_enviar_sms(self):
         cliente = Cliente("571058a184ef75e9b249216e56421c7c",
